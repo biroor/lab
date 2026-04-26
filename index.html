@@ -1,0 +1,134 @@
+
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Biroor Block Studio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="bg-shape bg-shape-a" aria-hidden="true"></div>
+  <div class="bg-shape bg-shape-b" aria-hidden="true"></div>
+
+  <header class="app-header">
+    <p class="eyebrow">Biroor Lab</p>
+    <h1>Block Coding Studio</h1>
+    <p class="subtitle">Scratch benzeri sahne, kukla, ses ve dosya yonetimi olan blok sistemi</p>
+  </header>
+
+  <main class="layout">
+    <aside class="panel palette-panel">
+      <div class="panel-title-row">
+        <h2>Blok Paleti</h2>
+      </div>
+      <p class="panel-note">Scratch tarzi: kategori sec, bloklari surukle ve calisma alanina birak.</p>
+      <div id="paletteCategories" class="palette-categories"></div>
+      <div id="paletteList" class="palette-list"></div>
+    </aside>
+
+    <section class="panel workspace-panel">
+      <div class="panel-title-row">
+        <h2>Calisma Alani</h2>
+        <button id="clearWorkspaceBtn" class="ghost-btn" type="button">Temizle</button>
+      </div>
+      <p class="panel-note">Bloklari calisma alaninda istedigin konuma surukleyebilirsin; ic alanlarda yuvalar korunur.</p>
+      <div id="workspaceLists" class="workspace-lists"></div>
+    </section>
+
+    <aside class="panel project-panel">
+      <div class="panel-title-row">
+        <h2>Sahne ve Varliklar</h2>
+      </div>
+      <p class="panel-note">Kukla, ses, dosya ve proje kaydet/yukle islemlerini bu panelden yonetebilirsin.</p>
+
+      <div class="stage-controls">
+        <button id="greenFlagBtn" class="flag-btn" type="button">Yesil Bayrak</button>
+        <button id="stopAllBtn" class="stop-btn" type="button">Durdur</button>
+      </div>
+
+      <div class="stage-shell">
+        <div id="stage" class="stage" aria-label="Sahne"></div>
+      </div>
+
+      <section class="asset-section">
+        <div class="asset-head">
+          <h3>Proje</h3>
+          <div class="asset-actions">
+            <button id="saveProjectBtn" class="ghost-btn" type="button">Kaydet</button>
+            <button id="loadProjectBtn" class="ghost-btn" type="button">Yukle</button>
+            <button id="exportSb3Btn" class="ghost-btn" type="button">SB3 Export</button>
+            <button id="importSb3Btn" class="ghost-btn" type="button">SB3 Import</button>
+          </div>
+        </div>
+        <p class="panel-note">Projeyi JSON veya SB3 olarak disa aktarip tekrar ice alabilirsin.</p>
+        <input id="projectInput" type="file" accept=".json,application/json" hidden>
+        <input id="sb3Input" type="file" accept=".sb3,application/zip" hidden>
+      </section>
+
+      <section class="asset-section">
+        <div class="asset-head">
+          <h3>Backdrop</h3>
+          <div class="asset-actions">
+            <button id="addBackdropBtn" class="ghost-btn" type="button">Backdrop Yukle</button>
+          </div>
+        </div>
+        <input id="backdropInput" type="file" accept="image/*" multiple hidden>
+        <div id="backdropList" class="asset-list"></div>
+        <div id="backdropEditor" class="sprite-editor"></div>
+      </section>
+
+      <section class="asset-section">
+        <div class="asset-head">
+          <h3>Kuklalar</h3>
+          <div class="asset-actions">
+            <button id="addEmptySpriteBtn" class="ghost-btn" type="button">Bos Kukla</button>
+            <button id="addSpriteBtn" class="ghost-btn" type="button">Resim Yukle</button>
+          </div>
+        </div>
+        <input id="spriteInput" type="file" accept="image/*" multiple hidden>
+        <div id="spriteList" class="asset-list"></div>
+        <div id="spriteEditor" class="sprite-editor"></div>
+      </section>
+
+      <section class="asset-section">
+        <div class="asset-head">
+          <h3>Sesler</h3>
+          <div class="asset-actions">
+            <button id="addSoundBtn" class="ghost-btn" type="button">Ses Yukle</button>
+          </div>
+        </div>
+        <input id="soundInput" type="file" accept="audio/*" multiple hidden>
+        <div id="soundList" class="asset-list"></div>
+        <div id="soundEditor" class="sprite-editor"></div>
+      </section>
+
+      <section class="asset-section">
+        <div class="asset-head">
+          <h3>Dosyalar</h3>
+          <div class="asset-actions">
+            <button id="addFileBtn" class="ghost-btn" type="button">Dosya Yukle</button>
+          </div>
+        </div>
+        <input id="fileInput" type="file" multiple hidden>
+        <div id="fileList" class="asset-list"></div>
+      </section>
+    </aside>
+
+    <aside class="panel code-panel">
+      <div class="panel-title-row">
+        <h2>Uretilen JavaScript</h2>
+      </div>
+      <pre id="generatedCode" class="code-box" aria-live="polite"></pre>
+      <div class="panel-actions">
+        <button id="runBtn" class="primary-btn" type="button">Debug Calistir</button>
+        <button id="clearOutputBtn" class="ghost-btn" type="button">Ciktiyi Temizle</button>
+      </div>
+
+      <h3>Konsol Ciktisi</h3>
+      <pre id="consoleOutput" class="console-box"></pre>
+    </aside>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
